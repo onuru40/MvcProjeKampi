@@ -1,0 +1,33 @@
+1-Entity Layer - Varlık katmanı. Projenin sql tablolarının tutulacağı class kısmı.
+
+2-Data Access Layer - Veri erişim katmanı. Crud işlemleri.
+
+3-Business Layer - İş katmanı. Case lerin kontrol edildiği katman. Presenation a gitmeden kontrol katmanı.
+
+4-Presentation - User Interface
+
+5-Tablolar
+
+Heading - ID, HeadingName, Date, Writer
+
+Content
+
+Writer
+
+Contact
+
+About
+
+6-Tablolar arasındaki ilişkiler.
+
+Kategori altında birden fazla başlık olabilir. 1-N Category-Heading
+
+Başlık hangi yazar tarafından oluşturuldu. Heading-Writer tablo ilişkisi. N-1 ilişki.
+
+7-Migrations - Code first yardımıyla oluşturduğumuz olduğumuz mimarideki değişiklikleri Sql e yansıtması için kullanacağımız bir bileşendir.
+
+8- Crud işlemleri - Interfaceler üzerinde oluşturulacak. Sınıflara rehberlik edecek yapılar.
+
+9- Generic Reposistory oluşturma - Bütün bileşenlerin tamamını kapsıyor.
+
+
