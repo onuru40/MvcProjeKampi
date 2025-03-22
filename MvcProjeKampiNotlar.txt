@@ -28,6 +28,19 @@ Başlık hangi yazar tarafından oluşturuldu. Heading-Writer tablo ilişkisi. N
 
 8- Crud işlemleri - Interfaceler üzerinde oluşturulacak. Sınıflara rehberlik edecek yapılar.
 
-9- Generic Reposistory oluşturma - Bütün bileşenlerin tamamını kapsıyor.
+9- Generic Reposistory oluşturma - Bütün bileşenlerin tamamını kapsıyor. Bütün sınıflarda ve interface lerde geçerli mimari yapı kuruyoruz. 
+   Tek bir generic repository ile kod tekrarından kurtuluyoruz. İşlemler düzenli olacak. Böl parçala yönet ile proje geliştir.
+
+10- Fluent Validation - Validasyon işlemlerini yapmak için kullanılan kütüphanedir. Doğrulama kurallarını oluşturmak için kullanılır.
+
+11- SOLID prensibinin amacı : Her sınıf sadece kendisine ait görevleri yapacak.
+
+12- PartialView - Bir sayfanın belirli bir bölümünü içeren html şablonudur. View içeriğinin bir bölümünü işleyen özel bir view türüdür. Amacı : Partial View'ler, View'lerinizi bölümlerden oluşmasına imkan sağlayan yapılardır.
+    PartialView lar büyük View yapılarını daha küçük bileşenlere ayırmanın etkili bir yoludur. View yapısının içerisinin gereksiz yere karmaşık veya büyük hale gelmesinin önüne geçebilir. Eğer kullanacağız View yapısı oldukça 
+    karmaşık kod düzeni içeriyorsa bunu PartialView’lara bölerek kod karmaşasından kurtarabilirsiniz.
+
+13- <forms loginUrl="/Login/Index/"></forms> - webconfig deki bu ayarın amacı, yetkisiz sayfaya giriş yapmaya çalıştığımızda bizi nereye yönlendirsin. Onu belirliyoruz.
+
+14-  Sayfada session olmadan, sayfayı açmak için [AllowAnonymous] attribute'u ile oturum olmadan açılmasına izin veriyoruz.
 
 

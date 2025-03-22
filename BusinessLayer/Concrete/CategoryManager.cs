@@ -1,4 +1,6 @@
-﻿using DataAccessLayer.Concrete.Repositories;
+﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete.Repositories;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,25 +10,39 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class CategoryManager
+    public class CategoryManager : ICategoryService
     {
-        GenericRepository<Category> repo = new GenericRepository<Category>();
+        ICategoryDal _categoryDal;
 
-        public List<Category> GetAllBL()
+        // Atama yapmak için constructor method (yapıcı method) kullanıyoruz. Business ta amaç new lemekten kaçınmak. Bağımlılığı minimize etmek.
+        public CategoryManager(ICategoryDal categoryDal)
         {
-            return repo.List();
+            _categoryDal = categoryDal;
         }
 
-        public void CategoryAddBL(Category p)
+        public void CategoryAddBL(Category category)
         {
-            if(p.CategoryName=="" || p.CategoryName.Length<=3 || p.CategoryDescription=="" || p.CategoryName.Length>=51)
-            {
-                // hata mesajı
-            }
-            else
-            {
-                repo.Insert(p);
-            }
+            _categoryDal.Insert(category);
+        }
+
+        public void CategoryDelete(Category category)
+        {
+            _categoryDal.Delete(category);
+        }
+
+        public void CategoryUpdate(Category category)
+        {
+            _categoryDal.Update(category);
+        }
+
+        public Category GetByID(int id)
+        {
+            return _categoryDal.Get(x => x.CategoryID == id);
+        }
+
+        public List<Category> GetList()
+        {
+            return _categoryDal.List(); // Generic repository i new lemeden, generic repository bağımlılığını minimize ederek generic repository methodunun içindeki değerlere erişim sağlıyoruz. Bağımlılıklar minimize ediliyor. Farklı bir teknolojiye geçtiğim zaman. Örnk. Dapper. Mevcuttaki bileşenime hiç bağımlı olmamalıyım. Bu bağımlılık minimize olmalı.
         }
     }
 }

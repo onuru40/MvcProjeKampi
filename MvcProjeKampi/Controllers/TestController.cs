@@ -17,5 +17,14 @@ namespace MvcProjeKampi.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        public ActionResult Test3()
+        {
+            return View();
+        }
+        public ActionResult SweetAlert()
+        {
+            return View();
+        }
     }
 }

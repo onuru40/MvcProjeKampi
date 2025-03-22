@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 namespace DataAccessLayer.Concrete.Repositories
 {
     // Bütün sınıflarda ve interface lerde geçerli mimari yapı kuruyoruz. Tek bir generic repository ile kod tekrarından kurtuluyoruz. İşlemler düzenli olacak. Böl parçala yönet ile proje geliştir.
+
+    // IRepository de yapılan method tanımlarının içini burada dolduruyoruz.
     public class GenericRepository<T> : IRepository<T> where T : class
     {
         Context c = new Context();
@@ -24,13 +26,22 @@ namespace DataAccessLayer.Concrete.Repositories
 
         public void Delete(T p)
         {
+            var deletedEntity = c.Entry(p);
+            deletedEntity.State = EntityState.Deleted;
             _object.Remove(p);
             c.SaveChanges();
         }
 
+        public T Get(Expression<Func<T, bool>> filter)
+        {
+            return _object.SingleOrDefault(filter); //  Bir dizide veya listede sadece 1 tane değer geriye döndürmek için kullanılan Entity Framework Linq metodudur.
+        }
+
         public void Insert(T p)
         {
-            _object.Add(p);
+            var addedEntity = c.Entry(p); // Entity state ile ekleyeceğim değeri addedEntity isimli değişkenin içine atıyoruz.
+            addedEntity.State = EntityState.Added;
+            //_object.Add(p);
             c.SaveChanges();
         }
 
@@ -46,6 +57,8 @@ namespace DataAccessLayer.Concrete.Repositories
 
         public void Update(T p)
         {
+            var updatedEntity = c.Entry(p);
+            updatedEntity.State = EntityState.Modified;
             c.SaveChanges();
         }
     }
